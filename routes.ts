@@ -10,7 +10,6 @@ const header: Jose = {
 
 export const login = async (ctx: Context) => {
   const {value} = await ctx.request.body();
-  console.log(value);
   for (const user of users) {
     if (value.username === user.username && value.password === user.password) {
       const payload: Payload = {
@@ -18,6 +17,7 @@ export const login = async (ctx: Context) => {
         exp: setExpiration(new Date().getTime() + 60000),
       }
 
+      // Create JWT and send it to user
       const jwt = makeJwt({key, header, payload});
       if (jwt) {
         ctx.response.status = 200;

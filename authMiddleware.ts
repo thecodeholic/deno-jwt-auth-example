@@ -3,9 +3,10 @@ import { validateJwt } from "https://deno.land/x/djwt/validate.ts"
 import key from './key.ts'
 
 const authMiddleware = async (ctx: Context, next: any) => {
-  console.log("Middleware");
 
   const headers: Headers = ctx.request.headers;
+  // Taking JWT from Authorization header and comparing if it is valid JWT token, if YES - we continue, 
+  // otherwise we return with status code 401
   const authorization = headers.get('Authorization')
   if (!authorization) {
     ctx.response.status = 401;

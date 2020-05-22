@@ -7,7 +7,7 @@ const router = new Router();
 router
   .post('/login', login)
   .get('/guest', guest)
-  .get('/auth', authMiddleware,  auth)
+  .get('/auth', authMiddleware,  auth) // Registering authMiddleware for /auth endpoint only
   ;
 
 const app = new Application();
